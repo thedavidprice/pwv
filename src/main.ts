@@ -2,6 +2,7 @@ import {
   renderRollingFundPortfolio,
   renderAngelPortfolio,
 } from "./portfolio/renderPortfolio";
+import { renderTestimonials } from "./testimonials/renderTestimonials";
 
 // Render the list when the DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,5 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   if (angelContainer) {
     angelContainer.appendChild(renderAngelPortfolio());
+  }
+
+  // Add testimonials
+  const testimonialContainer = document.querySelector(
+    "#testimonial-list-container"
+  );
+
+  if (testimonialContainer) {
+    testimonialContainer.appendChild(renderTestimonials());
+  } else {
+    console.error("Testimonial container not found");
   }
 });
