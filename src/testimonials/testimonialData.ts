@@ -15,7 +15,7 @@ export const testimonials: Testimonials = {
   testimonials: [
     {
       name: "Paul Copplestone",
-      title: "CEO &amp; Cofounder",
+      title: "CEO and Cofounder",
       company: "Supabase",
       quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       url: "https://www.supabase.com",
@@ -23,7 +23,7 @@ export const testimonials: Testimonials = {
     },
     {
       name: "Dan Farrely",
-      title: "CTO &amp; Founder",
+      title: "CTO and Founder",
       company: "Inngest",
       quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       url: "https://www.inngest.com",
@@ -36,6 +36,14 @@ export const testimonials: Testimonials = {
       quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       url: "https://www.val.town",
       tags: ["technology", "innovation"],
+    },
+    {
+      name: "Gorkem Yurtseven",
+      title: "Co-founder",
+      company: "fal",
+      quote: "These guys are my favorites.",
+      url: "https://www.fal.ai",
+      tags: ["ai", "generative ai"],
     },
   ],
 };
