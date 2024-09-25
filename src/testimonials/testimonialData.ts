@@ -22,7 +22,7 @@ export const testimonials: Testimonials = {
       tags: ["technology", "innovation"],
     },
     {
-      name: "Dan Farrely",
+      name: "Dan Farrelly",
       title: "CTO and Founder",
       company: "Inngest",
       quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",

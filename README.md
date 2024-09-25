@@ -22,3 +22,25 @@ Deployed on [Netlify](https://www.netlify.com/).
 ### Run
 
 - `pnpm dev`
+
+## AI
+
+Image generated prompt:
+
+```
+Create a non-human image for a web app that embodies hobbies, interests, and preferences.
+
+Visually represent favorite activities of synthesizer music and coffee.
+
+Use a preferred color scheme of red, purple.
+
+The design is relaxed.
+
+Use abstract forms, shapes, or patterns.
+
+Incorporate elements of the minimalist style.
+
+The image should be imaginative, non-literal, and convey the personality through vibrant design elements.
+
+DO NOT include any person, humanoid shapes or faces.
+```
