@@ -67,6 +67,25 @@ function getColorsForTag(tagName: string): [string, string, string] {
       return ["bg-indigo-50", "text-indigo-700", "fill-indigo-400"]; // Indigo
     case "space":
       return ["bg-blue-50", "text-blue-700", "fill-blue-400"]; // Blue
+    case "energy":
+      return ["bg-yellow-50", "text-yellow-700", "fill-yellow-400"]; // Yellow
+    case "construction":
+      return ["bg-cyan-50", "text-cyan-700", "fill-cyan-400"]; // Cyan
+    case "auth":
+      return ["bg-teal-50", "text-teal-700", "fill-teal-400"]; // Teal
+    case "b2b":
+      return ["bg-orange-50", "text-orange-700", "fill-orange-400"]; // Orange
+    case "defense":
+      return ["bg-red-50", "text-red-700", "fill-red-400"]; // Red
+    case "health":
+      return ["bg-pink-50", "text-pink-700", "fill-pink-400"]; // Pink
+    case "finance":
+      return ["bg-yellow-50", "text-yellow-700", "fill-yellow-400"]; // Yellow
+    case "insurance":
+      return ["bg-green-50", "text-green-700", "fill-green-400"]; // Green
+    case "retail":
+      return ["bg-blue-50", "text-blue-700", "fill-blue-400"]; // Blue
+
     default:
       return ["bg-gray-100", "text-gray-700", "fill-gray-400"]; // Light gray (default)
   }

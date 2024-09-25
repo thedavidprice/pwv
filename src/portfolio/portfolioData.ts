@@ -70,6 +70,7 @@ export const portfolioData: Portfolio = {
         tags: ["b2b", "construction"],
       },
       { name: "Poolside", url: "https://www.poolside.ai/", tags: ["ai"] },
+      { name: "Turso", url: "https://turso.tech", tags: ["dev", "db"] },
     ],
   },
   angel: {
