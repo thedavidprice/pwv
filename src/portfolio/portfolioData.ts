@@ -71,11 +71,19 @@ export const portfolioData: Portfolio = {
       },
       { name: "Poolside", url: "https://www.poolside.ai/", tags: ["ai"] },
       { name: "Turso", url: "https://turso.tech", tags: ["dev", "db"] },
+      { name: "Flux", url: "https://turso.tech", tags: ["dev", "db"] },
     ],
   },
   angel: {
     description: "Angel",
     portfolioItems: [
+      { name: "Beta", url: "https://beta.team/", tags: ["aviation"] },
+      { name: "Upside Foods", url: "https://upsidefoods.com", tags: [""] },
+      {
+        name: "Impossible",
+        url: "https://impossiblefoods.com Foods",
+        tags: [""],
+      },
       { name: "Stripe", url: "https://stripe.com/", tags: ["b2b", "saas"] },
       { name: "Supabase", url: "https://supabase.com/", tags: ["dev", "saas"] },
       { name: "Weights & Biases", url: "https://www.wandb.ai/", tags: ["ai"] },
@@ -85,6 +93,16 @@ export const portfolioData: Portfolio = {
         name: "Netlify",
         url: "https://www.netlify.com/",
         tags: ["board", "dev", "saas"],
+      },
+      {
+        name: "PATH Water",
+        url: "https://drinkpathwater.com",
+        tags: ["dev", "saas"],
+      },
+      {
+        name: "Graphite",
+        url: "https://www.graphite.dev/",
+        tags: ["dev", "saas"],
       },
       { name: "Retool", url: "https://retool.com/", tags: ["dev", "saas"] },
       { name: "Tito", url: "https://ti.to/", tags: ["board", "dev", "saas"] },
