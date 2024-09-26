@@ -25,6 +25,7 @@ async function generateImage(prompt, outputPath) {
     input: {
       prompt: prompt,
       image_size: "square",
+      num_images: 1,
     },
   });
 
@@ -66,10 +67,17 @@ async function generateTeamImages() {
   }
 }
 
-async function main() {
-  console.log("Starting team image generation...");
-  await generateTeamImages();
+async function main(iterations = 1) {
+  console.log(
+    `Starting team image generation for ${iterations} iteration(s)...`
+  );
+  for (let i = 0; i < iterations; i++) {
+    console.log(`Iteration ${i + 1} of ${iterations}`);
+    await generateTeamImages();
+  }
   console.log("Team image generation completed.");
 }
 
-await main();
+// Get the number of iterations from command line arguments
+const iterations = parseInt(process.argv[2]) || 1;
+await main(iterations);

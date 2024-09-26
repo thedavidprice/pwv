@@ -23,24 +23,26 @@ Deployed on [Netlify](https://www.netlify.com/).
 
 - `pnpm dev`
 
+### Generate Team Images
+
+- `pnpm images`
+
 ## AI
+
+- `pnpm images`
+
+Note: You need to have a `.env` file with `FAL_API_KEY` set to your fal.ai API key.
 
 Image generated prompt:
 
-```
-Create a non-human image for a web app that embodies hobbies, interests, and preferences.
-
-Visually represent favorite activities of synthesizer music and coffee.
-
-Use a preferred color scheme of red, purple.
-
-The design is relaxed.
-
-Use abstract forms, shapes, or patterns.
-
-Incorporate elements of the minimalist style.
-
-The image should be imaginative, non-literal, and convey the personality through vibrant design elements.
-
-DO NOT include any person, humanoid shapes or faces.
+```js
+function generatePrompt(person) {
+  return `Generate an abstract image for a web app that reflects hobbies, interests, and preferences, avoiding any human-like forms. Visualize the activities of ${person.hobbies.join(
+    " and "
+  )}, incorporating interests in ${person.interests.join(
+    " and "
+  )}. Use the color scheme: ${person.colors.join(", ")} and follow the ${
+    person.style
+  } design style. Emphasize minimalist, imaginative elements using abstract shapes and patterns to convey personality. STRICTLY no human figures, faces, or humanoid shapes.`;
+}
 ```
