@@ -4,7 +4,7 @@ import { testimonials } from "./testimonialData";
 // https://tailwindui.com/components/marketing/sections/testimonials#component-aaf6f3d1eb2b456bed6e0fa9f48f42f1
 export function renderTestimonials(): HTMLDivElement {
   const container = document.createElement("div");
-  container.className = "mx-auto mt-16 flow-root max-w-2xl sm:mt-20 lg:mx-0 lg:max-w-none";
+  container.className = "mx-auto flow-root max-w-2xl lg:mx-0 lg:max-w-none";
   const container2 = document.createElement("div");
   container2.className = "-mt-8 sm:-mx-4 sm:columns-2 sm:text-[0] lg:columns-3";
 

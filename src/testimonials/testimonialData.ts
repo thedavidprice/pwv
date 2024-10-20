@@ -53,5 +53,13 @@ export const testimonials: Testimonials = {
       url: "https://langbase.com/",
       tags: ["ai", "generative ai"],
     },    
+    {
+      name: "J.J.",
+      title: "CTO and Cofounder",
+      company: "Anonymous",
+      quote: "You’re the best VC I know! Your expertise from the trenches and your empathy for the hacker sets you apart from 99% of the shitbirds we talk to. Always great connecting!",
+      url: "#",
+      tags: ["ai", "generative ai"],
+    },    
   ],
 };
