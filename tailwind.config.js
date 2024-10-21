@@ -66,13 +66,13 @@ module.exports = {
           paddingRight: theme('spacing.4'),
         },
         'h1': {
-          fontFamily: theme('fontFamily.garamond'),
+          fontFamily: theme('fontFamily.grotesk'),
           fontSize: theme('fontSize.4xl'),
           fontWeight: theme('fontWeight.extrabold'),
           lineHeight: theme('lineHeight.tight'),
           letterSpacing: theme('letterSpacing.tighter'),
-          marginTop: theme('spacing.16'),
-          marginBottom: theme('spacing.8'),
+          marginTop: theme('spacing.12'),
+          marginBottom: theme('spacing.12'),
           '@screen md': {
             fontSize: theme('fontSize.5xl'), // Medium screens
           },
@@ -91,10 +91,10 @@ module.exports = {
           marginBottom: theme('spacing.6'),
           maxWidth: theme('maxWidth.container'),
           '@screen md': {
-            fontSize: theme('fontSize.3xl'), // Medium screens
+            fontSize: theme('fontSize.2xl'), // Medium screens
           },
           '@screen lg': {
-            fontSize: theme('fontSize.4xl'), // Large screens
+            fontSize: theme('fontSize.3xl'), // Large screens
           },          
         },
         // Improved grid alignment for h3
@@ -136,6 +136,9 @@ module.exports = {
         'li': {
           marginBottom: theme('spacing.2'),
         },
+        'li strong': {
+          letterSpacing: theme('letterSpacing.tightest'),
+        },
         // Audited and improved blockquote styling
         'blockquote': {
           fontFamily: theme('fontFamily.garamond'),
@@ -156,6 +159,9 @@ module.exports = {
         'blockquote p': {
           marginTop: '0',
           marginBottom: '0',
+        },
+        'figure blockquote': {
+          marginTop: '0',
         },
         'code': {
           fontFamily: theme('fontFamily.mono'),
