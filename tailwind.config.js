@@ -1,191 +1,170 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme');
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       fontFamily: {
-        garamond: ['"Adobe Garamond Pro"', 'serif'],
-        grotesk: ['"NHaasGroteskDSPro-65Md"', 'sans-serif'],
-        mono: ['"IBM Plex Mono"', 'monospace'],
+        serif: ['"Adobe Garamond Pro"', ...defaultTheme.fontFamily.serif],
+        sans: ['"NHaasGroteskDSPro-65Md"', ...defaultTheme.fontFamily.sans],
+        mono: ['"IBM Plex Mono"', ...defaultTheme.fontFamily.mono],
       },
-      // Customizing the default font sizes, line heights, and letter spacing
       fontSize: {
-        'xs': ['0.75rem', { lineHeight: '1rem' }],
-        'sm': ['0.875rem', { lineHeight: '1.25rem' }],
-        'base': ['1.125rem', { lineHeight: '1.75rem' }],
-        'lg': ['1.25rem', { lineHeight: '1.75rem' }],
-        'xl': ['1.5rem', { lineHeight: '2rem' }],
-        '2xl': ['1.875rem', { lineHeight: '2.25rem' }],
-        '3xl': ['2.25rem', { lineHeight: '2.5rem' }],
-        '4xl': ['3rem', { lineHeight: '1.2' }],
-        '5xl': ['3.75rem', { lineHeight: '1.2' }],
-        '6xl': ['4.5rem', { lineHeight: '1.1' }],
+        xs: ["0.75rem", { lineHeight: "1rem" }],
+        sm: ["0.875rem", { lineHeight: "1.25rem" }],
+        base: ["1rem", { lineHeight: "1.5rem" }],
+        lg: ["1.125rem", { lineHeight: "1.75rem" }],
+        xl: ["1.25rem", { lineHeight: "1.75rem" }],
+        "2xl": ["1.5rem", { lineHeight: "2rem" }],
+        "3xl": ["1.875rem", { lineHeight: "2.25rem" }],
+        "4xl": ["2.25rem", { lineHeight: "2.5rem" }],
+        "5xl": ["3rem", { lineHeight: "1" }],
+        "6xl": ["3.75rem", { lineHeight: "1" }],
+        "7xl": ["4.5rem", { lineHeight: "1" }],
       },
-      // Define consistent line heights and letter spacing to reuse
       lineHeight: {
-        tight: '1.1',
-        snug: '1.35',
-        normal: '1.5',
-        relaxed: '1.75',
-        loose: '2',
+        tight: "1.1",
+        snug: "1.35",
+        normal: "1.5",
+        relaxed: "1.75",
+        loose: "2",
       },
       letterSpacing: {
-        tightest: '-0.05em',
-        tighter: '-0.025em',
-        normal: '0',
-        wide: '0.025em',
-        wider: '0.05em',
-        widest: '0.1em',
+        tightest: "-0.05em",
+        tighter: "-0.025em",
+        normal: "0",
+        wide: "0.025em",
+        wider: "0.05em",
+        widest: "0.1em",
       },
-      // Extend the spacing scale without overwriting defaults
       spacing: {
-        'logo-small': '200px',   // Size for small screens
-        'logo-medium': '240px',  // Size for medium screens
-        'logo-large': '300px',   // Size for large screens
-        'section': '4rem',
-        'section-sm': '2rem',
+        "logo-small": "200px",
+        "logo-medium": "240px",
+        "logo-large": "300px",
+        "logo-margin": "2rem",
+        section: "4rem",
+        "section-sm": "2rem",
       },
-      // Added maxWidth for consistent container sizing
       maxWidth: {
-        'container': '68rem', // 1088px, similar to SFCD's content width
+        container: "68rem", // 1088px, similar to SFCD's content width
       },
     },
   },
   plugins: [
-    require('@tailwindcss/typography'), // Include the typography plugin
+    require("@tailwindcss/typography"), // Include the typography plugin
     function ({ addBase, theme }) {
       // Set default typography styles
       addBase({
-        'main, footer': {
-          maxWidth: theme('maxWidth.container'),
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          paddingLeft: theme('spacing.4'),
-          paddingRight: theme('spacing.4'),
+        "main, footer": {
+          maxWidth: theme("maxWidth.container"),
+          marginLeft: "auto",
+          marginRight: "auto",
+          paddingLeft: theme("spacing.4"),
+          paddingRight: theme("spacing.4"),
         },
-        'h1': {
-          fontFamily: theme('fontFamily.grotesk'),
-          fontSize: theme('fontSize.4xl'),
-          fontWeight: theme('fontWeight.extrabold'),
-          lineHeight: theme('lineHeight.tight'),
-          letterSpacing: theme('letterSpacing.tighter'),
-          marginTop: theme('spacing.12'),
-          marginBottom: theme('spacing.12'),
-          '@screen md': {
-            fontSize: theme('fontSize.5xl'), // Medium screens
+        h1: {
+          fontFamily: theme("fontFamily.serif"),
+          fontSize: theme("fontSize.5xl"),
+          fontWeight: theme("fontWeight.bold"),
+          lineHeight: theme("lineHeight.tight"),
+          letterSpacing: theme("letterSpacing.tighter"),
+          marginTop: theme("spacing.8"),
+          marginBottom: theme("spacing.6"),
+          "@screen md": {
+            fontSize: theme("fontSize.6xl"),
           },
-          '@screen lg': {
-            fontSize: theme('fontSize.6xl'), // Large screens
-          },          
-        },
-        // Improved grid alignment for h2
-        'h2': {
-          fontFamily: theme('fontFamily.grotesk'),
-          fontSize: theme('fontSize.2xl'),
-          fontWeight: theme('fontWeight.bold'),
-          lineHeight: theme('lineHeight.tight'),
-          letterSpacing: theme('letterSpacing.tighter'),
-          marginTop: theme('spacing.12'),
-          marginBottom: theme('spacing.6'),
-          maxWidth: theme('maxWidth.container'),
-          '@screen md': {
-            fontSize: theme('fontSize.2xl'), // Medium screens
+          "@screen lg": {
+            fontSize: theme("fontSize.7xl"),
           },
-          '@screen lg': {
-            fontSize: theme('fontSize.3xl'), // Large screens
-          },          
         },
-        // Improved grid alignment for h3
-        'h3': {
-          fontFamily: theme('fontFamily.grotesk'),
-          fontSize: theme('fontSize.xl'),
-          fontWeight: theme('fontWeight.semibold'),
-          lineHeight: theme('lineHeight.snug'),
-          marginTop: theme('spacing.6'),
-          marginBottom: theme('spacing.4'),
-          maxWidth: theme('maxWidth.container'),
-          letterSpacing: theme('letterSpacing.tightest'),
-          '@screen md': {
-            fontSize: theme('fontSize.xl'), // Medium screens
+        h2: {
+          fontFamily: theme("fontFamily.serif"),
+          fontSize: theme("fontSize.2xl"),
+          fontWeight: theme("fontWeight.bold"),
+          lineHeight: theme("lineHeight.tight"),
+          letterSpacing: theme("letterSpacing.tight"),
+          marginTop: theme("spacing.8"),
+          marginBottom: theme("spacing.6"),
+          "@screen md": {
+            fontSize: theme("fontSize.3xl"),
           },
-          '@screen lg': {
-            fontSize: theme('fontSize.2xl'), // Large screens
-          },          
         },
-        // Updated paragraph font size and grid alignment
-        'p': {
-          fontFamily: theme('fontFamily.garamond'),
-          fontSize: theme('fontSize.lg'),
-          lineHeight: theme('lineHeight.relaxed'),
-          marginTop: theme('spacing.4'),
-          marginBottom: theme('spacing.4'),
-          maxWidth: theme('maxWidth.container'),
+        h3: {
+          fontFamily: theme("fontFamily.serif"),
+          fontSize: theme("fontSize.xl"),
+          fontWeight: theme("fontWeight.semibold"),
+          lineHeight: theme("lineHeight.snug"),
+          marginTop: theme("spacing.6"),
+          marginBottom: theme("spacing.6"), // Increased from spacing.3
+          "@screen md": {
+            fontSize: theme("fontSize.2xl"),
+          },
         },
-        // Added styling for ul and li to match typography
-        'ul, ol': {
-          fontFamily: theme('fontFamily.garamond'),
-          fontSize: theme('fontSize.lg'),
-          lineHeight: theme('lineHeight.relaxed'),
-          marginTop: theme('spacing.4'),
-          marginBottom: theme('spacing.4'),
-          maxWidth: theme('maxWidth.container'),
-
+        p: {
+          fontFamily: theme("fontFamily.sans"),
+          fontSize: theme("fontSize.xl"),
+          lineHeight: theme("lineHeight.relaxed"),
+          marginTop: theme("spacing.4"),
+          marginBottom: theme("spacing.4"),
+          maxWidth: theme("maxWidth.container"),
         },
-        'li': {
-          marginBottom: theme('spacing.2'),
+        "ul, ol": {
+          fontFamily: theme("fontFamily.sans"),
+          fontSize: theme("fontSize.xl"),
+          lineHeight: theme("lineHeight.relaxed"),
+          marginTop: theme("spacing.4"),
+          marginBottom: theme("spacing.4"),
+          maxWidth: theme("maxWidth.container"),
         },
-        'li strong': {
-          letterSpacing: theme('letterSpacing.tightest'),
+        li: {
+          marginBottom: theme("spacing.2"),
         },
-        // Audited and improved blockquote styling
-        'blockquote': {
-          fontFamily: theme('fontFamily.garamond'),
-          fontStyle: 'italic',
-          fontSize: theme('fontSize.lg'),
-          lineHeight: theme('lineHeight.relaxed'),
-          letterSpacing: theme('letterSpacing.normal'),
-          borderLeftColor: theme('colors.gray.400'),
-          borderLeftWidth: theme('borderWidth.4'),
-          paddingLeft: theme('spacing.6'),
-          marginTop: theme('spacing.8'),
-          marginBottom: theme('spacing.8'),
-          color: theme('colors.gray.700'),
-          maxWidth: theme('maxWidth.container'),
-          marginLeft: 'auto',
-          marginRight: 'auto',
+        blockquote: {
+          fontFamily: theme("fontFamily.serif"),
+          fontSize: theme("fontSize.lg"),
+          lineHeight: theme("lineHeight.normal"),
+          letterSpacing: theme("letterSpacing.normal"),
+          borderLeftColor: theme("colors.gray.400"),
+          borderLeftWidth: theme("borderWidth.4"),
+          paddingLeft: theme("spacing.6"),
+          marginTop: theme("spacing.8"),
+          marginBottom: theme("spacing.8"),
+          color: theme("colors.gray.700"),
+          maxWidth: theme("maxWidth.container"),
+          marginLeft: "auto",
+          marginRight: "auto",
         },
-        'blockquote p': {
-          marginTop: '0',
-          marginBottom: '0',
+        "blockquote p": {
+          marginTop: "0",
+          marginBottom: "0",
         },
-        'figure blockquote': {
-          marginTop: '0',
+        "figure blockquote": {
+          marginTop: "0",
         },
-        'code': {
-          fontFamily: theme('fontFamily.mono'),
-          fontSize: theme('fontSize.sm'),
-          backgroundColor: theme('colors.gray.100'),
-          padding: theme('spacing.1'),
-          borderRadius: theme('borderRadius.md'),
+        code: {
+          fontFamily: theme("fontFamily.mono"),
+          fontSize: theme("fontSize.sm"),
+          backgroundColor: theme("colors.gray.100"),
+          padding: theme("spacing.1"),
+          borderRadius: theme("borderRadius.md"),
         },
-        'pre': {
-          fontFamily: theme('fontFamily.mono'),
-          fontSize: theme('fontSize.sm'),
-          backgroundColor: theme('colors.gray.900'),
-          color: theme('colors.gray.100'),
-          padding: theme('spacing.4'),
-          borderRadius: theme('borderRadius.lg'),
-          overflowX: 'auto',
-          marginTop: theme('spacing.6'),
-          marginBottom: theme('spacing.6'),
+        pre: {
+          fontFamily: theme("fontFamily.mono"),
+          fontSize: theme("fontSize.sm"),
+          backgroundColor: theme("colors.gray.900"),
+          color: theme("colors.gray.100"),
+          padding: theme("spacing.4"),
+          borderRadius: theme("borderRadius.lg"),
+          overflowX: "auto",
+          marginTop: theme("spacing.6"),
+          marginBottom: theme("spacing.6"),
         },
-        'hr': {
-          borderColor: theme('colors.gray.300'),
-          marginTop: theme('spacing.12'),
-          marginBottom: theme('spacing.12'),
-        },        
+        hr: {
+          borderColor: theme("colors.gray.300"),
+          marginTop: theme("spacing.12"),
+          marginBottom: theme("spacing.12"),
+        },
       });
     },
   ],
