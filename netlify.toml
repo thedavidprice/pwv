@@ -8,18 +8,18 @@
 
 [[redirects]]
   from = "/fund-memo"
-  to = "https://fund.pwv.com/PWV-Fund-Memo-116b3e27e9b580cfb085e18e4281e407?pvs=4"
+  to = "https://fund.pwv.com/PWV-Fund-Memo-174fb5e9241881289e6bf2c1fb3f07d5?pvs=4"
   status = 301
   force = true
   
 [[redirects]]
   from = "/fundmemo"
-  to = "https://fund.pwv.com/PWV-Fund-Memo-116b3e27e9b580cfb085e18e4281e407?pvs=4"
+  to = "https://fund.pwv.com/PWV-Fund-Memo-174fb5e9241881289e6bf2c1fb3f07d5?pvs=4"
   status = 301
   force = true
 
 [[redirects]]
   from = "/faq"
-  to = "https://fund.pwv.com/FAQs-554dfb5b7d0f43db8a7a2724efc597f9?pvs=4"
+  to = "https://fund.pwv.com/PWV-Fund-FAQs-174fb5e92418814dac5ac4041c9fa057?pvs=4"
   status = 301
   force = true
