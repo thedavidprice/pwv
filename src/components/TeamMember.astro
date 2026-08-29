@@ -1,0 +1,123 @@
+---
+import LinkedInLink from './LinkedInLink.astro';
+import TwitterLink from './TwitterLink.astro';
+import GitHubLink from './GitHubLink.astro';
+import BlueskyLink from './BlueskyLink.astro';
+import WebsiteLink from './WebsiteLink.astro';
+import NewsLink from './NewsLink.astro';
+
+export interface Props {
+  name: string;
+  title: string;
+  bio: string;
+  hoverLine: string;
+  isGeneralPartner?: boolean;
+  slug: string;
+  showHover?: boolean;
+  linkedin?: string;
+  twitter?: string;
+  github?: string;
+  bluesky?: string;
+  website?: string;
+  includePosts?: boolean;
+  authorName?: string;
+  hasPage?: boolean;
+  nickname?: string;
+  givenName?: string;
+}
+
+const {
+  name,
+  title,
+  bio,
+  hoverLine,
+  isGeneralPartner: _isGeneralPartner = false,
+  slug,
+  showHover = false,
+  linkedin,
+  twitter,
+  github,
+  bluesky,
+  website,
+  includePosts = false,
+  authorName,
+  hasPage = false,
+  nickname,
+  givenName,
+} = Astro.props;
+
+const aboutName = nickname || givenName || name.split(' ')[0];
+---
+
+<div id={slug} class="group relative mt-4 scroll-mt-8">
+  <div class="space-y-2">
+    <h3 class="text-xl font-bold">
+      {
+        hasPage ? (
+          <a
+            href={`/team/${slug}`}
+            class="pwv-link-underline hover:text-pwv-green transition-colors"
+          >
+            {name}
+          </a>
+        ) : (
+          name
+        )
+      }
+    </h3>
+    <p class="text-sm font-medium">
+      {title}
+    </p>
+    <p class="mt-4 max-w-screen-md leading-relaxed">
+      {bio}
+    </p>
+    {
+      hasPage && (
+        <a
+          href={`/team/${slug}`}
+          class="pwv-link-underline hover:text-pwv-green mt-2 inline-flex items-center gap-1.5 text-sm transition-colors"
+        >
+          <span>About {aboutName}</span>
+          <svg
+            class="h-3.5 w-3.5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </a>
+      )
+    }
+
+    <!-- Social Links -->
+    {
+      (linkedin || twitter || github || bluesky || website || (includePosts && authorName)) && (
+        <div class="mt-4 flex gap-3">
+          {linkedin && <LinkedInLink handle={linkedin} />}
+          {twitter && <TwitterLink handle={twitter} />}
+          {bluesky && <BlueskyLink handle={bluesky} />}
+          {github && <GitHubLink handle={github} />}
+          {website && <WebsiteLink url={website} />}
+          {includePosts && authorName && <NewsLink authorName={authorName} />}
+        </div>
+      )
+    }
+  </div>
+
+  <!-- Hover tooltip -->
+  {
+    showHover && (
+      <div class="pointer-events-none absolute bottom-full left-0 z-10 mb-2 max-w-xs rounded-lg bg-gray-900 px-3 py-2 text-sm text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+        {hoverLine}
+        <div class="absolute top-full left-4 h-0 w-0 border-t-4 border-r-4 border-l-4 border-transparent border-t-gray-900" />
+      </div>
+    )
+  }
+</div>

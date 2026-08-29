@@ -1,0 +1,469 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import TerminalInterface from '../components/Terminal/TerminalInterface';
+
+const title = 'Terminal';
+const description =
+  'Explore PWV portfolio companies, people, and insights through a retro terminal interface';
+
+// Load all individual post entity files
+const postEntities = await getCollection('extractedPostEntities');
+
+// Load portfolio data
+const representativePortfolio = await getCollection('representativePortfolio');
+const rollingFundPortfolio = await getCollection('rollingFundPortfolio');
+const fundOnePortfolio = await getCollection('fundOnePortfolio');
+const angelPortfolio = await getCollection('angelPortfolio');
+
+// Load team data
+const teamMembers = await getCollection('team');
+
+// Dynamically aggregate entities from individual post files
+const companiesMap = new Map<string, { posts: string[]; mentions: number }>();
+const investorsMap = new Map<string, { posts: string[]; mentions: number }>();
+const peopleMap = new Map<
+  string,
+  { posts: string[]; mentions: number; role?: string }
+>();
+const topicsMap = new Map<string, { posts: string[]; mentions: number }>();
+const quotesArray: Array<{
+  quote: string;
+  speaker: string;
+  context?: string;
+  postSlug: string;
+  postTitle: string;
+  pubDate?: string;
+}> = [];
+
+// Aggregate data from all posts
+for (const post of postEntities) {
+  const { slug, title, companies, investors, people, topics, quotes, pubDate } =
+    post.data;
+
+  // Aggregate companies
+  companies.forEach((company) => {
+    if (!companiesMap.has(company)) {
+      companiesMap.set(company, { posts: [], mentions: 0 });
+    }
+    const companyData = companiesMap.get(company)!;
+    companyData.posts.push(slug);
+    companyData.mentions += 1;
+  });
+
+  // Aggregate investors
+  investors.forEach((investor) => {
+    if (!investorsMap.has(investor)) {
+      investorsMap.set(investor, { posts: [], mentions: 0 });
+    }
+    const investorData = investorsMap.get(investor)!;
+    investorData.posts.push(slug);
+    investorData.mentions += 1;
+  });
+
+  // Aggregate people
+  people.forEach((person) => {
+    const personName = typeof person === 'string' ? person : person.name;
+    const personRole = typeof person === 'object' ? person.role : undefined;
+
+    if (!peopleMap.has(personName)) {
+      peopleMap.set(personName, { posts: [], mentions: 0, role: personRole });
+    }
+    const personData = peopleMap.get(personName)!;
+    personData.posts.push(slug);
+    personData.mentions += 1;
+    // Update role if this entry has one and we didn't have one before
+    if (personRole && !personData.role) {
+      personData.role = personRole;
+    }
+  });
+
+  // Aggregate topics
+  topics.forEach((topic) => {
+    if (!topicsMap.has(topic)) {
+      topicsMap.set(topic, { posts: [], mentions: 0 });
+    }
+    const topicData = topicsMap.get(topic)!;
+    topicData.posts.push(slug);
+    topicData.mentions += 1;
+  });
+
+  // Aggregate quotes
+  quotes.forEach((quote) => {
+    quotesArray.push({
+      ...quote,
+      postSlug: slug,
+      postTitle: title,
+      pubDate: pubDate || undefined,
+    });
+  });
+}
+
+// Build the data structure expected by TerminalInterface
+const entitiesData = {
+  posts: Object.fromEntries(postEntities.map((post) => [post.id, post.data])),
+  entities: {
+    companies: Object.fromEntries(companiesMap),
+    investors: Object.fromEntries(investorsMap),
+    people: Object.fromEntries(peopleMap),
+    topics: Object.fromEntries(topicsMap),
+    quotes: quotesArray,
+  },
+  portfolio: {
+    representative: representativePortfolio.map((p) => p.data),
+    rollingFund: rollingFundPortfolio.map((p) => p.data),
+    fundOne: fundOnePortfolio.map((p) => p.data),
+    angel: angelPortfolio.map((p) => p.data),
+  },
+  team: teamMembers.map((t) => t.data),
+  metadata: {
+    extractedAt: new Date().toISOString(),
+    totalPosts: postEntities.length,
+  },
+};
+---
+
+<Layout title={title} description={description}>
+  <div class="terminal-outer flex min-h-screen items-center justify-center p-0">
+    <div
+      class="terminal-container bg-pwv-black text-pwv-green relative overflow-hidden font-mono"
+    >
+      <!-- Scanline effect overlay -->
+      <div
+        class="scanlines pointer-events-none absolute inset-0 z-50 opacity-10"
+      >
+      </div>
+
+      <!-- CRT glow effect -->
+      <div class="crt-glow pointer-events-none absolute inset-0 z-40"></div>
+
+      <div class="terminal-wrapper relative z-10 max-w-full p-3 sm:p-4 md:p-6">
+        <!-- Boot Sequence -->
+        <div
+          id="boot-sequence"
+          class="boot-sequence mb-4 space-y-1 text-[0.65rem] sm:text-xs md:text-sm"
+        >
+          <div class="boot-line">PWV OS v1.47.3 booting...</div>
+          <div class="boot-line">
+            Reading pwv.toml configuration... <span class="text-pwv-teal"
+              >[OK]</span
+            >
+          </div>
+          <div class="boot-line">
+            Loading entity database... <span class="text-pwv-teal">[OK]</span>
+          </div>
+          <div class="boot-line">
+            Initializing showcase engine... <span class="text-pwv-teal"
+              >[OK]</span
+            >
+          </div>
+          <div class="boot-line">
+            Parsing news archive... <span class="text-pwv-teal">[OK]</span>
+          </div>
+          <div class="boot-line">
+            Indexing companies, people, and insights... <span
+              class="text-pwv-teal">[OK]</span
+            >
+          </div>
+          <div class="boot-line">
+            Checking semantic versioning... <span class="text-pwv-teal"
+              >1.47.3</span
+            >
+          </div>
+          <div class="boot-line mb-4">
+            PWV Terminal ready. Type <span class="text-pwv-teal">help</span> for
+            available commands.
+          </div>
+        </div>
+
+        <!-- Terminal Interface Component -->
+        <div class="terminal-section mb-6">
+          <TerminalInterface client:only="react" entitiesData={entitiesData} />
+        </div>
+
+        <!-- Fallback Input (shown if React doesn't load) -->
+        <noscript>
+          <div
+            class="terminal-input border-pwv-green bg-pwv-black/50 flex items-center gap-2 rounded border-2 px-3 py-3"
+          >
+            <span class="text-pwv-teal text-base font-bold">pwv:~$</span>
+            <input
+              type="text"
+              placeholder="Type 'help'..."
+              class="text-pwv-green flex-1 bg-transparent font-mono text-base outline-none"
+            />
+          </div>
+        </noscript>
+
+        <!-- Help Footer -->
+        <div
+          class="help-footer border-pwv-green/20 mt-6 border-t pt-3 text-[0.65rem] opacity-60 sm:mt-8 sm:pt-4 sm:text-xs"
+        >
+          <p class="hidden sm:block">
+            💡 Tip: Try commands like
+            <span class="text-pwv-teal">cat pwv.toml</span>,
+            <span class="text-pwv-teal">surprise me</span>, <span
+              class="text-pwv-teal">discover random</span
+            >, or <span class="text-pwv-teal">stats</span>
+          </p>
+          <p class="mt-2 hidden sm:block">
+            Press <kbd
+              class="border-pwv-green/40 rounded border px-1 text-[0.65rem]"
+              >↑</kbd
+            > / <kbd
+              class="border-pwv-green/40 rounded border px-1 text-[0.65rem]"
+              >↓</kbd
+            > to navigate history
+          </p>
+          <p class="sm:hidden">
+            Try: <span class="text-pwv-teal">help</span>, <span
+              class="text-pwv-teal">companies</span
+            >, <span class="text-pwv-teal">surprise me</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Terminal outer container */
+  .terminal-outer {
+    min-height: 70vh;
+    padding: 0.5rem;
+  }
+
+  /* Terminal container - CRT monitor style */
+  .terminal-container {
+    background: #000000;
+    max-width: 1200px;
+    width: 100%;
+    height: 70vh;
+    max-height: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 8px solid #1a1a1a;
+    box-shadow:
+      0 0 0 2px #333,
+      0 0 40px rgba(0, 210, 46, 0.15),
+      inset 0 0 60px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Make terminal content scrollable */
+  .terminal-wrapper {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 210, 46, 0.3) transparent;
+  }
+
+  .terminal-wrapper::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .terminal-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .terminal-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(0, 210, 46, 0.3);
+    border-radius: 4px;
+  }
+
+  .terminal-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 210, 46, 0.5);
+  }
+
+  /* Scanline effect */
+  .scanlines {
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    animation: scanline 8s linear infinite;
+  }
+
+  @keyframes scanline {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(10px);
+    }
+  }
+
+  /* CRT glow effect */
+  .crt-glow {
+    background: radial-gradient(
+      ellipse at center,
+      rgba(0, 210, 46, 0.05) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  /* Boot sequence animation */
+  .boot-sequence {
+    animation: fadeIn 0.5s ease-in;
+  }
+
+  .boot-line {
+    animation: bootLine 0.3s ease-out;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  .boot-line:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+  .boot-line:nth-child(2) {
+    animation-delay: 0.8s;
+  }
+  .boot-line:nth-child(3) {
+    animation-delay: 1.4s;
+  }
+  .boot-line:nth-child(4) {
+    animation-delay: 2s;
+  }
+  .boot-line:nth-child(5) {
+    animation-delay: 2.6s;
+  }
+  .boot-line:nth-child(6) {
+    animation-delay: 3.2s;
+  }
+  .boot-line:nth-child(7) {
+    animation-delay: 3.8s;
+  }
+  .boot-line:nth-child(8) {
+    animation-delay: 4.4s;
+  }
+
+  @keyframes bootLine {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Keyboard key styling */
+  kbd {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.875rem;
+  }
+
+  /* Hide boot sequence after it's done */
+  .boot-sequence.hidden {
+    display: none;
+  }
+
+  /* Cursor blink animation */
+  @keyframes blink {
+    0%,
+    49% {
+      opacity: 1;
+    }
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .cursor-blink {
+    animation: blink 1s infinite;
+  }
+
+  /* Smooth scrolling */
+  .terminal-output {
+    scroll-behavior: smooth;
+  }
+
+  /* Mobile-optimized scrollbar */
+  @media (max-width: 768px) {
+    .terminal-output {
+      scrollbar-width: thin;
+    }
+
+    .terminal-output::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .terminal-output::-webkit-scrollbar-thumb {
+      background: rgba(0, 210, 46, 0.3);
+      border-radius: 2px;
+    }
+  }
+
+  /* Ensure terminal section is visible */
+  .terminal-section {
+    min-height: 60px;
+    position: relative;
+    z-index: 100;
+  }
+
+  /* Make sure terminal interface shows */
+  .terminal-interface {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .terminal-outer {
+      padding: 0.25rem;
+    }
+
+    .terminal-container {
+      height: 99vh;
+      border-radius: 12px;
+      border-width: 6px;
+    }
+
+    .terminal-wrapper {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+  }
+
+  /* Prevent horizontal scroll on small screens */
+  @media (max-width: 768px) {
+    pre {
+      overflow-x: auto;
+      max-width: 100%;
+    }
+  }
+
+  /* Touch-friendly improvements */
+  @media (hover: none) and (pointer: coarse) {
+    input {
+      font-size: 16px; /* Prevent zoom on iOS */
+    }
+  }
+</style>
+
+<script>
+  // Hide boot sequence after animation completes
+  setTimeout(() => {
+    const bootSequence = document.getElementById('boot-sequence');
+    if (bootSequence) {
+      bootSequence.classList.add('hidden');
+    }
+  }, 5200);
+</script>

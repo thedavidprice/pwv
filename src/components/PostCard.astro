@@ -1,0 +1,208 @@
+---
+import SmartImage from './SmartImage.astro';
+import FormattedDate from './FormattedDate.astro';
+import { getReadingTime, authorToSlug, tagToSlug } from '../lib/news';
+
+export interface Props {
+  post: {
+    id: string;
+    data: {
+      title: string;
+      description: string;
+      pubDate: Date;
+      heroImage?: any; // Astro image type
+      url?: string;
+      author?: string;
+      tags?: string[];
+      updatedDate?: Date;
+      aiGeneratedImage?: boolean;
+      aiGeneratedDescription?: boolean;
+      featured?: boolean;
+      isFeatured?: boolean;
+    };
+    body?: string;
+  };
+  size?: 'small' | 'large';
+  isFeatured?: boolean;
+}
+
+const { post, size = 'large', isFeatured = false } = Astro.props;
+
+const isSmall = size === 'small';
+const isRemote = false; // !!post.data.url;
+const padding = isSmall ? 'p-2' : 'p-4';
+const titleSize = isSmall ? 'text-sm' : 'text-lg';
+const descriptionSize = isSmall ? 'text-xs' : 'text-sm';
+const buttonSize = isSmall ? 'text-xs px-3 py-2' : 'text-sm px-4 py-2';
+const iconSize = isSmall ? 'w-3 h-3' : 'w-4 h-4';
+const dateSize = isSmall ? 'text-xs' : 'text-sm';
+const marginBottom = isSmall ? 'mb-4' : 'mb-5';
+// Check if post is featured via prop or post data
+const postIsFeatured = isFeatured || post.data.featured === true;
+const borderColor = postIsFeatured
+  ? 'border-pwv-light-teal'
+  : 'border-pwv-light-green';
+const buttonColor = postIsFeatured
+  ? 'bg-pwv-black text-pwv-white'
+  : 'bg-pwv-black text-pwv-white';
+
+// Extract site name from URL for remote content
+const getSiteName = (url: string) => {
+  try {
+    const urlObj = new URL(url);
+    return urlObj.hostname.replace('www.', '');
+  } catch {
+    return 'External Site';
+  }
+};
+---
+
+<article
+  class={`${marginBottom} overflow-hidden h-full border-pwv-light-green border-1 rounded-md ${borderColor}`}
+>
+  <div class="flex h-full flex-col">
+    <div class={`${padding} flex flex-col flex-grow text-pwv-black`}>
+      <div
+        class={`w-full overflow-hidden border-white border rounded-lg mb-4 border-b-1 border-b-pwv-light-green h-68 items-center justify-center`}
+      >
+        <a href={`/news/${post.id}`}>
+          {
+            post.data.heroImage ? (
+              <SmartImage
+                src={post.data.heroImage}
+                alt={post.data.title}
+                size="hero"
+                rounded={true}
+                shadow={true}
+                class="mb-4 max-h-64 w-full object-cover object-top"
+                loading="lazy"
+              />
+            ) : (
+              <div class="flex h-48 items-start justify-center">
+                <svg
+                  class="h-12 w-12"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  />
+                </svg>
+              </div>
+            )
+          }</a
+        >
+      </div>
+      <div
+        class={`flex items-center gap-2 ${dateSize} ${isSmall ? 'mb-2' : 'mb-3'}`}
+      >
+        {
+          isRemote && post.data.url && (
+            <>
+              <span>•</span>
+              <span>{getSiteName(post.data.url)}</span>
+            </>
+          )
+        }
+      </div>
+      <h2
+        class={`${titleSize} font-bold text-primary ${isSmall ? 'mb-2' : 'mb-3'} leading-loose`}
+      >
+        <a href={`/news/${post.id}`}>{post.data.title}</a>
+      </h2>
+
+      {
+        post.data.tags && post.data.tags.length > 0 && (
+          <div class={`flex flex-wrap gap-1 ${isSmall ? 'mb-2' : 'mb-3'}`}>
+            {post.data.tags.map((tag) => (
+              <a
+                href={`/news/tags/${tagToSlug(tag)}`}
+                class="border-pwv-light-green hover:bg-pwv-light-green inline-block rounded-md border px-2 py-1 text-xs font-medium transition-colors"
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
+        )
+      }
+      {
+        post.data.author && (
+          <p
+            class={`${descriptionSize} text-subtle font-semibold ${isSmall ? 'mb-2' : 'mb-3'}`}
+          >
+            By{' '}
+            <a
+              href={`/news/author/${authorToSlug(post.data.author)}`}
+              class="text-pwv-black hover:text-pwv-green underline transition-colors"
+            >
+              {post.data.author}
+            </a>
+          </p>
+        )
+      }
+      <p class="text-subtle mb-2 text-xs">
+        <FormattedDate date={post.data.pubDate} />
+      </p>
+      <p
+        class={`${descriptionSize}  leading-relaxed ${isSmall ? 'mb-3' : 'mb-4'} flex-grow`}
+      >
+        {post.data.description}
+      </p>
+
+      <div class="mt-auto text-center">
+        <a
+          href={`/news/${post.id}`}
+          target={isRemote ? '_blank' : undefined}
+          rel={isRemote ? 'noopener noreferrer' : undefined}
+          class={`btn inline-flex items-center gap-2 ${buttonSize} ${buttonColor} font-mono rounded-lg w-fit`}
+        >
+          {
+            isRemote ? (
+              <>
+                Read on{' '}
+                {post.data.url ? getSiteName(post.data.url) : 'External Site'}
+                <svg
+                  class={iconSize}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </>
+            ) : (
+              <>
+                {(() => {
+                  const readingTime = getReadingTime(post.body);
+                  return readingTime > 0 ? `Read (${readingTime} Min)` : 'Read';
+                })()}
+                <svg
+                  class={iconSize}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </>
+            )
+          }
+        </a>
+      </div>
+    </div>
+  </div>
+</article>

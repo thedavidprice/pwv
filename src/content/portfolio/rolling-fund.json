@@ -1,0 +1,296 @@
+[
+  {
+    "name": "Astranis",
+    "slug": "astranis",
+    "url": "https://www.astranis.com/",
+    "tags": ["🦄", "hardware", "aerospace"]
+  },
+  {
+    "name": "Cursor",
+    "slug": "cursor",
+    "url": "https://www.cursor.com/",
+    "tags": ["🦄", "ai", "dev tools"],
+    "acquiredBy": "SpaceX"
+  },
+  {
+    "name": "Atuin",
+    "slug": "atuin",
+    "url": "https://atuin.sh/",
+    "tags": ["dev tools"]
+  },
+  {
+    "name": "fal",
+    "slug": "fal",
+    "url": "https://www.fal.ai/",
+    "tags": ["🦄", "ai", "dev tools"]
+  },
+  {
+    "name": "Elicit",
+    "slug": "elicit",
+    "url": "https://elicit.com",
+    "tags": ["ai", "saas"]
+  },
+  {
+    "name": "Ona",
+    "slug": "ona",
+    "url": "https://www.ona.com/",
+    "tags": ["dev tools", "board seat", "acquired"],
+    "formerly": "Gitpod",
+    "acquiredBy": "OpenAI"
+  },
+  {
+    "name": "Aerodome",
+    "slug": "aerodome",
+    "url": "https://www.aerodome.com",
+    "tags": ["hardware", "ai", "acquired"],
+    "acquiredBy": "Flock Safety"
+  },
+  {
+    "name": "Liquid AI",
+    "slug": "liquid-ai",
+    "url": "https://www.liquid.ai",
+    "tags": ["🦄", "ai"]
+  },
+  {
+    "name": "Zoo",
+    "slug": "zoo",
+    "url": "https://zoo.dev",
+    "tags": ["ai", "cad"]
+  },
+  {
+    "name": "Val Town",
+    "slug": "val-town",
+    "url": "https://www.val.town/",
+    "tags": ["dev tools"]
+  },
+  {
+    "name": "Unkey",
+    "slug": "unkey",
+    "url": "https://www.unkey.com/",
+    "tags": ["dev tools"]
+  },
+  {
+    "name": "CommandCode",
+    "slug": "commandcode",
+    "url": "https://commandcode.ai",
+    "formerly": "Langbase",
+    "tags": ["ai", "dev tools", "coding"]
+  },
+  {
+    "name": "Inngest",
+    "slug": "inngest",
+    "url": "https://www.inngest.com/",
+    "tags": ["dev tools"]
+  },
+  {
+    "name": "Aalo Atomics",
+    "slug": "aalo-atomics",
+    "url": "https://www.aalo.com",
+    "tags": ["🦄", "hardware", "energy"]
+  },
+  {
+    "name": "Cleanlab",
+    "slug": "cleanlab",
+    "url": "https://www.cleanlab.ai/",
+    "tags": ["ai", "dev tools", "acquired"],
+    "acquiredBy": "Handshake"
+  },
+  {
+    "name": "Clerk",
+    "slug": "clerk",
+    "url": "https://clerk.com/",
+    "tags": ["dev tools"]
+  },
+  {
+    "name": "GitButler",
+    "slug": "gitbutler",
+    "url": "https://www.gitbutler.com/",
+    "tags": ["dev tools"]
+  },
+  {
+    "name": "QuantPi",
+    "slug": "quantpi",
+    "url": "https://www.quantpi.com/",
+    "tags": ["ai"]
+  },
+  {
+    "name": "tldraw",
+    "slug": "tldraw",
+    "url": "https://www.tldraw.dev/",
+    "tags": ["dev tools"]
+  },
+  {
+    "name": "VoidZero",
+    "slug": "voidzero",
+    "url": "https://voidzero.dev/",
+    "tags": ["dev tools", "acquired"],
+    "acquiredBy": "Cloudflare"
+  },
+  {
+    "name": "ReSim",
+    "slug": "resim",
+    "url": "https://www.resim.ai/",
+    "tags": ["ai"]
+  },
+  {
+    "name": "Tuist",
+    "slug": "tuist",
+    "url": "https://tuist.dev/",
+    "tags": ["dev tools"]
+  },
+  {
+    "name": "BuildPass",
+    "slug": "buildpass",
+    "url": "https://www.buildpass.com.au/",
+    "tags": ["saas", "construction"]
+  },
+  {
+    "name": "Poolside",
+    "slug": "poolside",
+    "url": "https://www.poolside.ai/",
+    "tags": ["🦄", "ai"]
+  },
+  {
+    "name": "Turso",
+    "slug": "turso",
+    "url": "https://turso.tech",
+    "tags": ["dev tools"]
+  },
+  {
+    "name": "Flux",
+    "slug": "flux",
+    "url": "https://www.flux.ai/p",
+    "tags": ["hardware", "saas"]
+  },
+  {
+    "name": "CFS",
+    "slug": "commonwealth-fusion-systems",
+    "url": "https://cfs.energy/",
+    "tags": ["🦄", "energy"]
+  },
+  {
+    "name": "StackOne",
+    "slug": "stackone",
+    "url": "https://www.stackone.com/",
+    "tags": ["saas"]
+  },
+  {
+    "name": "Not Diamond",
+    "slug": "not-diamond",
+    "url": "https://www.notdiamond.ai",
+    "tags": ["ai"]
+  },
+  {
+    "name": "Thunder Compute",
+    "slug": "thunder-compute",
+    "url": "https://www.thundercompute.com",
+    "tags": ["ai", "infrastructure"]
+  },
+  {
+    "name": "LM Studio",
+    "slug": "lm-studio",
+    "url": "https://lmstudio.ai",
+    "tags": ["ai"]
+  },
+  {
+    "name": "MoneyHash",
+    "slug": "moneyhash",
+    "url": "https://moneyhash.io/",
+    "tags": ["payments"]
+  },
+  {
+    "name": "Inth",
+    "slug": "inth",
+    "url": "https://inth.com/",
+    "tags": ["compliance", "privacy"],
+    "formerly": "Consent"
+  },
+  {
+    "name": "Milestone",
+    "slug": "milestone",
+    "url": "https://mstone.ai/",
+    "tags": ["ai"]
+  },
+  {
+    "name": "Myriad",
+    "url": "https://myriad.ai/",
+    "tags": ["ai", "compliance"],
+    "slug": "myriad-ai"
+  },
+  {
+    "name": "Alinia",
+    "url": "https://alinia.ai/",
+    "tags": ["ai", "compliance"],
+    "slug": "alinia"
+  },
+  {
+    "name": "Freeplay",
+    "url": "https://freeplay.ai/",
+    "tags": ["ai", "dev tools"],
+    "slug": "freeplay"
+  },
+  {
+    "name": "Purplefish",
+    "url": "https://purplefish.com",
+    "tags": ["ai", "saas"],
+    "slug": "purplefish"
+  },
+  {
+    "name": "Inference Capital",
+    "url": "https://inferencecapital.ai",
+    "tags": ["ai", "saas"],
+    "slug": "inference-capital",
+    "formerly": "Marly"
+  },
+  {
+    "name": "Retrace",
+    "url": "https://retracesoftware.com",
+    "tags": ["dev tools"],
+    "slug": "retrace"
+  },
+  {
+    "name": "Monumo",
+    "url": "https://monumo.com",
+    "tags": ["ai", "hardware"],
+    "slug": "monumo"
+  },
+  {
+    "name": "Massdriver",
+    "url": "https://www.massdriver.cloud",
+    "tags": ["dev tools", "saas"],
+    "slug": "massdriver"
+  },
+  {
+    "name": "RedwoodJS",
+    "url": "https://rwsdk.com",
+    "tags": ["dev tools"],
+    "slug": "redwoodjs"
+  },
+  {
+    "name": "Earthmover",
+    "url": "https://earthmover.io",
+    "tags": ["ai", "saas"],
+    "slug": "earthmover"
+  },
+  {
+    "name": "Aera Farms",
+    "url": "https://aerafarms.com",
+    "tags": ["food tech", "hardware"],
+    "slug": "aera-farms"
+  },
+  {
+    "name": "Limitless AI",
+    "url": "https://www.limitless.ai/",
+    "tags": ["ai", "acquired"],
+    "slug": "limitless",
+    "formerly": "Rewind AI",
+    "acquiredBy": "Meta"
+  },
+  {
+    "name": "Fueled",
+    "url": "https://www.opensend.com/",
+    "tags": ["acquired"],
+    "slug": "fueled",
+    "acquiredBy": "Opensend"
+  }
+]

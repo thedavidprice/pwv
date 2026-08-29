@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Astranis",
+    "slug": "astranis",
+    "url": "https://www.astranis.com/",
+    "tags": ["🦄", "hardware", "aerospace"]
+  },
+  {
+    "name": "Cursor",
+    "slug": "cursor",
+    "url": "https://www.cursor.com/",
+    "tags": ["🦄", "ai", "dev tools"]
+  },
+  {
+    "name": "CommandCode",
+    "slug": "commandcode",
+    "url": "https://commandcode.ai",
+    "tags": ["ai", "dev tools", "coding"]
+  },
+  {
+    "name": "fal",
+    "slug": "fal",
+    "url": "https://www.fal.ai/",
+    "tags": ["🦄", "ai", "dev tools"]
+  },
+  {
+    "name": "Ona",
+    "slug": "ona",
+    "url": "https://www.ona.com/",
+    "tags": ["dev tools", "board seat", "acquired"]
+  },
+  {
+    "name": "Liquid AI",
+    "slug": "liquid-ai",
+    "url": "https://www.liquid.ai",
+    "tags": ["🦄", "ai"]
+  },
+  {
+    "name": "Stripe",
+    "url": "https://stripe.com/",
+    "tags": ["🦄", "dev tools"],
+    "slug": "stripe"
+  },
+  {
+    "name": "Carta",
+    "url": "https://carta.com",
+    "tags": ["🦄", "saas"],
+    "slug": "carta"
+  },
+  {
+    "name": "Tailscale",
+    "url": "https://tailscale.com",
+    "tags": ["🦄", "dev tools"],
+    "slug": "tailscale"
+  },
+  {
+    "name": "Supabase",
+    "url": "https://supabase.com/",
+    "tags": ["🦄", "dev tools"],
+    "slug": "supabase"
+  },
+  {
+    "name": "Weights & Biases",
+    "url": "https://www.wandb.ai/",
+    "tags": ["ai", "acquired"],
+    "slug": "weights-and-biases"
+  },
+  {
+    "name": "Snyk",
+    "url": "https://snyk.io/",
+    "tags": ["🦄", "dev tools"],
+    "slug": "snyk"
+  },
+  {
+    "name": "Netlify",
+    "url": "https://www.netlify.com/",
+    "tags": ["🦄", "dev tools"],
+    "slug": "netlify"
+  },
+  {
+    "name": "Retool",
+    "url": "https://retool.com/",
+    "tags": ["🦄", "dev tools"],
+    "slug": "retool"
+  },
+  {
+    "name": "Zed",
+    "url": "https://zed.dev/",
+    "tags": ["dev tools"],
+    "slug": "zed"
+  },
+  {
+    "name": "PlanetScale",
+    "url": "https://planetscale.com/",
+    "tags": ["dev tools"],
+    "slug": "planetscale"
+  },
+  {
+    "name": "StackBlitz",
+    "url": "https://stackblitz.com/",
+    "tags": ["dev tools", "ai"],
+    "slug": "stackblitz"
+  },
+  {
+    "name": "VoidZero",
+    "slug": "voidzero",
+    "url": "https://voidzero.dev/",
+    "tags": ["dev tools", "acquired"]
+  }
+]

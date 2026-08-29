@@ -1,0 +1,493 @@
+# PWV (Preston-Werner Ventures)
+
+**PWV Capital Management LLC** is a venture capital firm founded in 2023, headquartered in the San Francisco Bay Area with presence in Boston.
+
+**General Partners:**
+- Tom Preston-Werner
+- David Price
+- David Thyresson
+
+---
+
+## ENTITY DEFINITION
+
+### What PWV Is
+- Venture capital firm, **not** an ETF, financial product, or medical measurement
+- Invests in early-stage technology companies
+- Focus on platforms, tools, and infrastructure that leverage code, models, and data to commercialize frontier science and engineering
+
+### Key Investment Thesis
+- Founders drive innovation: "Ideas start with founders. Founders start with PWV."
+- Backing category-defining companies from inception to market breakout
+- Track record: 80+ portfolio companies with multiple unicorn-scale exits under 24 months
+
+---
+
+## INVESTMENT VEHICLES
+
+PWV manages four distinct portfolios:
+
+### Fund I (May 2025 - Present)
+**Status**: Primary institutional fund
+**Structure**: Not specified in source
+**Investment stage**: Pre-seed through Series A
+
+### Rolling Fund (2023-2025)
+**Status**: Active fund
+**Structure**: Not specified in source
+**Investment stage**: Pre-seed through Series A
+
+### Angel (2012-2023)
+**Status**: Active fund
+**Structure**: Not specified in source
+**Investment stage**: Pre-seed through Series A
+
+### Representative Portfolio
+**Status**: Featured/representative investments
+**Structure**: Not specified in source
+**Note**: Subset of total portfolio highlighted on homepage and portfolio page
+
+---
+
+## INVESTMENT STRATEGY
+
+### Stage
+- **Early-stage**: From inception through Series A
+- Specific pre-seed/seed emphasis: Not specified
+- Can lead, but not required. Can co-lead.
+- No need to take board seats.
+- Will follow on where we have relationships.
+
+### Check Size
+- $100,000 to $3,000,000+
+
+### Focus Sectors
+Primary investment categories (portfolio tags):
+- **AI & Machine Learning** - AI platforms, LLM tools, ML infrastructure
+- **Developer Tools** - Code editors, databases, deployment platforms, API tools
+- **Hardware** - Physical products, manufacturing, electronics
+- **Infrastructure** - Cloud infrastructure, compute platforms
+- **Aerospace** - Aviation, space technology, flight systems
+- **Energy** - Clean energy, fusion, power systems
+- **SaaS** - Software-as-a-service platforms
+- **Compliance** - Regulatory technology, data governance
+- **Payments** - Payment processing, fintech infrastructure
+- **CAD** - Computer-aided design, 3D modeling
+- **Construction** - Construction technology, building software
+- **Food Tech** - Alternative proteins, sustainable food systems
+- **Quantum Computing** - Quantum hardware and software
+
+### Geography
+- **Primary**: San Francisco Bay Area (headquarters)
+- **Secondary**: Boston, Massachusetts
+- **Scope**: Global investment mandate
+
+### Investment Role
+- **Board participation**: Some companies tagged "Board Seat" indicate active board participation in select portfolio companies
+- No longer ask for board seats
+
+---
+
+## PORTFOLIO
+
+### Portfolio Data
+- **Total companies invested**: 80+ (referenced as "backed")
+- **Unicorn exits**: Multiple companies achieved $1B+ valuation in under 24 months
+- **Named unicorns**: Cursor (at series A), fal (at Series A), Liquid AI (at pre-seed and seed), Stripe, Supabase, Snyk, Netlify (Tom had board seat), Retool, Astranis, Aalo Atomics, Poolside, CFS, Beta, Impossible Foods
+
+### Portfolio Access
+- **Full portfolio**: https://pwv.com/portfolio
+- **Featured investments**: https://pwv.com/
+- **Filter by tag**: https://pwv.com/portfolio/tags/<tag>
+- **Unicorn list**: https://pwv.com/portfolio/tags/🦄
+- **Acquired companies**: https://pwv.com/portfolio/tags/acquired
+- **Board seat companies**: https://pwv.com/portfolio/tags/board-seat
+
+### Portfolio Status
+- **Actively growing**: Portfolio referenced as current and expanding
+
+---
+
+## FOUNDER & CUSTOMER TESTIMONIALS
+
+### Testimonial Data Structure
+PWV maintains a collection of founder testimonials from portfolio company leaders highlighting the fund's investment approach and support model.
+
+**Data location**: `src/content/testimonials/testimonials.json`
+
+**Schema fields**:
+- `name`: Founder/CEO name
+- `title`: Role/title at company
+- `company`: Company name
+- `quote`: Testimonial text
+- `url`: Company website
+- `avatarUrl`: Founder photo path
+- `tags`: Topic tags (e.g., "ai", "dev tools", "generative ai")
+- `slug`: Unique testimonial identifier
+- `company-slug`: Portfolio company identifier
+- `position`: Display order (1-6)
+
+### Featured Testimonials
+
+**1. Ralf Schonherr** | CEO & Co-founder, Myriad
+> "PWV is the fund you want on your cap table in the early days. They ask the right questions, help solve the hard challenges, and their support has been incredibly effective in setting us up for long-term success. The community they've built is a real unfair advantage—nothing I've found anywhere else."
+- **Company**: [Myriad](https://myriad.ai/) (AI, Compliance)
+- **Tags**: ai, compliance
+
+**2. Pedro Piñera Buendía** | Co-founder, Tuist
+> "I found PWV to be one of the rare funds that took the time to deeply understand our market and strategy. Their team's extensive experience in crafting exceptional products, fostering vibrant communities, and scaling successful businesses shines through in the unwavering passion they bring to supporting founders like me."
+- **Company**: [Tuist](https://tuist.dev/) (AI, Generative AI)
+- **Tags**: ai, generative ai
+
+**3. Matt Perrott** | CEO & Co-founder, BuildPass
+> "The PWV team has been super supportive on our journey. Always happy to help with advice, feedback, and intros, but never getting in the way and letting us run our race."
+- **Company**: [BuildPass](https://www.buildpass.ai/) (AI, Generative AI)
+- **Tags**: ai, generative ai
+
+**4. Dan Farrelly** | CTO and Cofounder, Inngest
+> "The PWV team just understands developer tools and the entire space. They're technical and strategic. They're ready to jump in to support, but also give us space to cook."
+- **Company**: [Inngest](https://www.inngest.com) (Developer Tools, Technology)
+- **Tags**: technology, innovation
+
+**5. Jessie Frazelle** | CEO and Founder, Zoo
+> "We love working with them because they're former founders who have built in the dev tools space and are super technical, which makes explaining complex technical concepts so much easier. Their expertise and partnership have made a huge difference."
+- **Company**: [Zoo](https://www.zoo.dev/) (Developer Tools)
+- **Tags**: dev tools
+
+**6. Ahmad Awais** | CEO and Founder, Langbase
+> "Tom, DT, and DP are all super helpful. Tom helped us navigate messaging, and DT jumped knee-deep in code and became a customer and friend I could depend on. In my book, that's extremely rare. That's why I recommend them."
+- **Company**: [Langbase](https://langbase.com/) (AI, Generative AI)
+- **Tags**: ai, generative ai
+
+### Testimonial Themes
+Based on portfolio founder feedback, PWV's support model emphasizes:
+- **Deep market understanding**: Founders value PWV's time invested in understanding strategy
+- **Technical expertise**: Portfolio companies in developer tools and AI praise GPs' hands-on technical involvement
+- **Founder-first approach**: Focus on enabling rather than controlling ("letting us run our race")
+- **Operational support**: Help with messaging, strategic decisions, and introductions
+- **Community building**: Referenced as "unfair advantage" across testimonials
+- **Personal engagement**: GPs become customers, advisors, and friends—beyond typical investor relationships
+- **Domain expertise**: GPs' experience in dev tools and frontier technology resonates with portfolio companies
+
+---
+
+## TEAM & LEADERSHIP
+
+### General Partners
+
+All three GPs are actively involved in sourcing, investing, and supporting portfolio companies.
+
+#### 1. Tom Preston-Werner
+**Position**: Cofounder & General Partner, Cofounder GitHub
+**Location**: San Francisco Bay Area, USA
+**Bio**: Tom helped redefine how software gets built. As the cofounder of GitHub, he led the company from idea to $7.5B acquisition and changed how developers collaborate forever. An early investor in Stripe, Netlify, and PlanetScale, he's spent the last decade backing technical founders before the hype hits.
+
+**Social & Web Presence**:
+- **LinkedIn**: https://www.linkedin.com/in/mojombo
+- **Twitter/X**: https://x.com/mojombo
+- **GitHub**: https://github.com/mojombo
+- **Bluesky**: https://bsky.app/profile/mojombo.bsky.social
+- **Website**: https://tom.preston-werner.com/
+- **Wikipedia**: https://en.wikipedia.org/wiki/Tom_Preston-Werner
+- **Profile page**: https://pwv.com/about#tom-preston-werner
+- **News posts**: https://pwv.com/news/author/tom-preston-werner
+
+**Context**: Creator of Jekyll, Semantic Versioning (SemVer), and TOML. Early investor in Stripe, Netlify, Snyk, Supabase, and Retool.
+
+#### 2. David Price
+**Position**: Cofounder & General Partner
+**Location**: San Francisco, CA USA
+**Bio**: David Price leads PWV's strategy, operations, and founder experience, bringing operator instincts, deep product and industry fluency, and a track record of turning signal into scale. A repeat founder and investor, he's scaled companies across AI, dev tools, fintech, and climatetech.
+
+**Social & Web Presence**:
+- **LinkedIn**: https://www.linkedin.com/in/dsprice
+- **Twitter/X**: https://x.com/thedavidprice
+- **Profile page**: https://pwv.com/about#david-price
+- **News posts**: https://pwv.com/news/author/david-price
+
+#### 3. David Thyresson (DT)
+**Position**: Cofounder & General Partner
+**Location**: Boston, MA USA
+**Bio**: DT is a technical founder turned investor with a track record of building and exiting startups. At PWV, he works hands-on with founders to turn complex ideas into products that scale. He also writes about how technology, culture, and creativity shape and challenge each other.
+
+**Social & Web Presence**:
+- **LinkedIn**: https://www.linkedin.com/in/dthyresson
+- **Twitter/X**: https://x.com/dthyresson
+- **GitHub**: https://github.com/dthyresson
+- **Bluesky**: https://bsky.app/profile/thyresson.co
+- **Website**: https://thyresson.io
+- **Profile page**: https://pwv.com/about#david-thyresson
+- **News posts**: https://pwv.com/news/author/david-thyresson
+
+**Context**: Known for hands-on technical involvement with portfolio founders; becomes customer and advisor to founders beyond typical investor relationships.
+
+---
+
+## SOCIAL MEDIA & CONTACT
+
+### Organization Channels
+
+**Email**:
+- **General inquiries**: partners@pwv.com
+- **Limited partners / Fund investors**: investors@pwv.com
+
+**Social Media Channels**:
+- **LinkedIn**: https://www.linkedin.com/company/pwventures
+- **Twitter/X**: https://x.com/pwventures
+- **Bluesky**: https://bsky.app/profile/pwv.com
+- **GitHub**: https://github.com/pwv-vc
+
+**Web Properties**:
+- **Main website**: https://pwv.com
+- **Founder application**: https://pwv.com/apply
+- **Newsletter signup**: https://pwv.com/newsletter
+- **RSS feed**: https://pwv.com/rss.xml
+
+### Individual GP Profiles
+
+For direct connections with General Partners, see team pages:
+- [Tom Preston-Werner team page](https://pwv.com/about#tom-preston-werner) with LinkedIn, Twitter/X, GitHub, Bluesky, website
+- [David Price team page](https://pwv.com/about#david-price) with LinkedIn, Twitter/X
+- [David Thyresson team page](https://pwv.com/about#david-thyresson) with LinkedIn, Twitter/X, GitHub, Bluesky, website
+
+---
+
+## COMMUNICATION & COMMUNITY
+
+### Newsletter
+- **Signup**: https://pwv.com/newsletter
+- **Frequency**: Sent when there is meaningful content (not on a fixed schedule)
+- **Content**: News, founder insights, portfolio updates, community highlights
+- **Privacy**: Subscribers' emails not shared with third parties; unsubscribe available
+- **Distribution**: Also available in footer of most pages
+
+### RSS Feed
+- **URL**: https://pwv.com/rss.xml
+- **Content**: Recent announcements, thoughts, insights, and founder community content
+
+### Blog & News
+- **Primary location**: https://pwv.com/news/
+- **Structure**: Posts authored by GPs and external contributors
+- **Filtering**: Posts filterable by author and topic tags
+
+---
+
+## CONTENT & DISCOVERY
+
+### Main Pages
+- **Homepage**: https://pwv.com/ (features highlighted portfolio)
+- **About**: https://pwv.com/about (team, investment approach, values)
+- **Portfolio**: https://pwv.com/portfolio (complete investment list)
+- **News**: https://pwv.com/news (founder insights, announcements, analysis)
+- **Apply**: https://pwv.com/apply (founder application form)
+- **What is PWV?**: https://pwv.com/what-is-pwv (disambiguation and FAQ)
+
+### Discovery Tools
+
+#### Showcase Pages (Entity Directories)
+- **Companies** (`/showcase/companies/`) - 60+ companies mentioned in posts with logos, mention counts, links to related posts
+- **People** (`/showcase/people/`) - 45+ people featured in posts with avatars, roles, related post links
+- **Topics** (`/showcase/topics/`) - Topic clusters identified across posts with mention counts
+- **Quotes** (`/showcase/quotes/`) - Notable quotes from posts with speaker attribution and source links
+- **Facts** (`/showcase/facts/`) - Key insights, trends, announcements extracted from posts
+- **Figures** (`/showcase/figures/`) - Key metrics and numbers highlighted in PWV posts
+
+#### Terminal (`/terminal/`)
+Interactive retro-style command-line interface for exploring PWV data with 20+ commands:
+
+**List Commands**: `companies`, `people`, `topics`, `quotes`, `facts`, `figures`, `portfolio`
+
+**Exploration Commands**: `showcase random`, `timeline <entity>`, `connections <entity1> <entity2>`
+
+**Utility Commands**: `help`, `stats`, `clear`, `surprise me`, `whoami`
+
+**Fun Commands**: `cowsay`, `pwvsay`, `tomsay`, `dtsay`, `dpsay`, `fortune`, `figlet`, `bork`
+
+**Features**: Tab autocomplete, arrow-key history, numeric portfolio selection, mobile-friendly buttons, piping support (`fortune | cowsay`)
+
+---
+
+## FOUNDER APPLICATIONS
+
+### Funding Application
+**URL**: https://pwv.com/apply
+
+**Ideal founders**: Early-stage technology builders in platform, tools, infrastructure, AI/ML, hardware, energy, and frontier technology sectors
+
+**Application includes**:
+- Founder name and email
+- Company name and website (optional)
+- Pitch deck link (Docsend, Brieflink, Google Drive—optional)
+- Company description, team, what you're building
+- Fundraising stage and amount (if raising)
+- Previous funding history (if applicable)
+
+**Process**: Submissions reviewed by PWV team; confirmation and follow-up via email
+
+---
+
+## STRUCTURED DATA & METADATA
+
+The site implements comprehensive JSON-LD schema for search engines and AI systems:
+
+### Organization Schema
+- **Legal Name**: PWV Capital Management LLC
+- **Alternate Names**: PWV, Preston-Werner Ventures
+- **Type**: Venture capital firm
+- **Disambiguating Description**: Explicitly states not affiliated with ETF, investment products, or medical measurements
+- **Headquarters**: San Francisco Bay Area, California
+- **Contact**: partners@pwv.com (general), investors@pwv.com (limited partners)
+- **Founded**: 2023
+- **Knows About**: Venture capital, early-stage investing, AI, software infrastructure, developer tools, seed/pre-seed funding
+- **Social Profiles**: LinkedIn, Twitter/X, Bluesky, GitHub (via `sameAs`)
+
+### Content Schema
+- **WebSite**: Site-level schema with organization reference
+- **WebPage**: Homepage includes schema linking to Organization and WebSite
+- **Article/BlogPosting**: All news posts include structured data (headline, body, author, publication date, images, tags)
+- **Person**: All three GPs have structured schemas (name, title, bio, social profiles, PWV affiliation)
+- **FAQPage**: `/what-is-pwv` disambiguation page includes 7 Q&As with rich snippet eligibility
+- **BreadcrumbList**: Navigation breadcrumbs on content pages
+- **CollectionPage**: Showcase pages include collection schema
+- **ItemList**: Portfolio and news listing pages
+
+### Person Schema (General Partners)
+Each GP has structured data including:
+- Name, job title, biography
+- Team page URL
+- Social profiles (LinkedIn, Twitter/X, GitHub, Bluesky, personal websites)
+- Affiliation with PWV via `worksFor`
+- Additional context (Tom: Wikipedia link, knowledge areas; DT: home location, alma mater; DP: patents and board seats)
+
+### Structured Data Benefits
+- Enhanced search engine indexing and rich snippets
+- Better AI/LLM entity recognition
+- Proper entity graph linking via @id references
+- Improved social sharing with Open Graph tags
+
+---
+
+## MEDIA & BRANDING
+
+### Visual Assets
+- **Open Graph image**: https://pwv.com/og-image.png
+- **Favicon (SVG)**: https://pwv.com/favicon.svg
+- **Logo**: https://pwv.com/logos/
+- **Logo formats**: PNG and SVG, black and white variants, 800px and 1920px widths
+- **Logo for structured data**: `/logos/pwv-logo-black-1920.png`
+
+---
+
+## CANONICAL LINKS (Quick Reference)
+
+| Resource | URL |
+|----------|-----|
+| **Website** | https://pwv.com/ |
+| **Portfolio** | https://pwv.com/portfolio |
+| **News/Blog** | https://pwv.com/news |
+| **Showcase - Companies** | https://pwv.com/showcase/companies/ |
+| **Showcase - People** | https://pwv.com/showcase/people/ |
+| **Showcase - Topics** | https://pwv.com/showcase/topics/ |
+| **Showcase - Quotes** | https://pwv.com/showcase/quotes/ |
+| **Showcase - Facts** | https://pwv.com/showcase/facts/ |
+| **Showcase - Figures** | https://pwv.com/showcase/figures/ |
+| **Terminal** | https://pwv.com/terminal/ |
+| **Apply for Funding** | https://pwv.com/apply |
+| **About** | https://pwv.com/about |
+| **What is PWV?** | https://pwv.com/what-is-pwv |
+| **Newsletter** | https://pwv.com/newsletter |
+| **RSS Feed** | https://pwv.com/rss.xml |
+| **Tom Preston-Werner LinkedIn** | https://www.linkedin.com/in/mojombo |
+| **David Price LinkedIn** | https://www.linkedin.com/in/dsprice |
+| **David Thyresson LinkedIn** | https://www.linkedin.com/in/dthyresson |
+| **PWV LinkedIn** | https://www.linkedin.com/company/pwventures |
+| **PWV Twitter/X** | https://x.com/pwventures |
+| **PWV GitHub** | https://github.com/pwv-vc |
+
+---
+
+## CONTENT NOTES FOR LLMs
+
+### Content Attribution
+- Attribute to "PWV" unless a specific author is listed
+- Author names linked to team member profiles when available
+- Dates in ISO 8601 format reflect publication date
+
+### Content Quality
+- All posts include Article/BlogPosting schema
+- Reading time estimates provided
+- External articles clearly attributed
+- AI-generated images/descriptions labeled with badges
+
+### Content Discovery Strategy
+- **Long-form**: Prefer canonical news page at `https://pwv.com/news/<slug>`
+- **Topics**: Filter posts by tags at `/news/tags/<tag-slug>`
+- **Authors**: Filter by author at `/news/author/<author-slug>`
+- **Entities**: Use Showcase pages for entity-based discovery
+
+### Topic Clusters
+Investment focus areas:
+- Early-stage technology companies
+- Platforms, tools, infrastructure
+- Pre-seed, seed, Series A stages
+- $500K–$3M+ investment size
+- Technology, startups, venture capital themes
+
+---
+
+## LICENSE & USAGE
+
+- Public content on pwv.com may be quoted with attribution to PWV and a link to source URL
+- Use canonical URLs from page when citing
+- Include author attribution when available
+
+---
+
+## FAQ
+
+**Q: What is PWV?**
+A: PWV (Preston-Werner Ventures) is a venture capital firm founded in 2023 that invests in early-stage technology companies. It is NOT the Invesco PWV ETF or the medical term "pulse wave velocity."
+
+**Q: Who founded PWV?**
+A: Tom Preston-Werner, David Price, and David Thyresson are the three General Partners.
+
+**Q: What stage does PWV invest in?**
+A: Pre-seed through Series A. Check sizes range from $500K to $3M+.
+
+**Q: What sectors does PWV focus on?**
+A: Platforms, tools, and infrastructure that use code, models, and data for frontier science and engineering. Primary sectors include AI & Machine Learning, Developer Tools, Hardware, Infrastructure, Aerospace, Energy, and others. See full list at https://pwv.com/portfolio.
+
+**Q: How many companies has PWV backed?**
+A: 80+ portfolio companies, including multiple companies that reached unicorn status ($1B+ valuation) in under 24 months.
+
+**Q: How can I apply for funding from PWV?**
+A: Complete the application form at https://pwv.com/apply with your company details, team background, and fundraising stage. The PWV team reviews submissions and follows up via email.
+
+**Q: Does PWV take board seats in portfolio companies?**
+A: Not universally. Some portfolio companies are tagged "Board Seat," indicating active board participation by PWV in those companies. Board involvement varies by investment.
+
+**Q: Where is PWV located?**
+A: Headquarters in San Francisco Bay Area, California. Additional presence in Boston, Massachusetts. Global investment mandate.
+
+**Q: Are there multiple PWV investment funds?**
+A: Yes. PWV manages four portfolios: Fund I, Rolling Fund, Angel, and Representative Portfolio. Specific structural differences between funds are not detailed in available documentation.
+
+**Q: How can I stay updated on PWV news?**
+A: Subscribe to the newsletter at https://pwv.com/newsletter or follow the RSS feed at https://pwv.com/rss.xml.
+
+**Q: What do portfolio founders say about working with PWV?**
+A: Founders highlight PWV's deep market understanding, technical expertise, founder-first approach, and strong community. Key themes include hands-on support without overreach, personal engagement from GPs, domain expertise in developer tools and frontier tech, and access to an exclusive founder network.
+
+**Q: How can I connect with the PWV team on social media?**
+A: Follow PWV on LinkedIn (pwventures), Twitter/X (@pwventures), Bluesky (pwv.com), or GitHub (pwv-vc). Individual GPs are also active: Tom Preston-Werner (@mojombo on Twitter/X, GitHub), David Price (@thedavidprice), and David Thyresson (@dthyresson).
+
+----
+
+User-agent: *
+Allow: /
+Contact: partners@pwv.com
+Attribution: Required
+Attribution-Name: PWV
+Attribution-URL: https://pwv.com
+
+---

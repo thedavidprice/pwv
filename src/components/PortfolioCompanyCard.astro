@@ -1,0 +1,101 @@
+---
+import { Image as UnpicImage } from '@unpic/astro';
+import { resolvePortfolioLogoSrc } from '../lib/images';
+
+interface Props {
+  name: string;
+  url: string;
+  tags: string[];
+  slug: string;
+  showTags?: boolean;
+  formerly?: string;
+  acquiredBy?: string;
+}
+
+const { name, url, tags, slug, showTags = false, formerly, acquiredBy } = Astro.props;
+
+// Companies that need black background for their logos
+const blackBackgroundSlugs = ['beta'];
+
+type TagColors = {
+  [key: string]: string;
+};
+
+const dotColor = 'bg-pwv-soft-periwinkle';
+
+const dotColors: TagColors = {
+  '🦄': 'bg-fuchsia-600',
+  aerospace: dotColor,
+  hardware: dotColor,
+  energy: dotColor,
+  'dev tools': dotColor,
+  ai: dotColor,
+  saas: dotColor,
+  construction: dotColor,
+  'board seat': dotColor,
+  'board seat (past)': dotColor,
+  biotech: dotColor,
+  'food tech': dotColor,
+  cad: dotColor,
+  'quantum computing': dotColor,
+  acquired: 'bg-pwv-green',
+};
+
+// Helper function to get tag styles based on category
+const getTagStyle = (tag: string) => {
+  const baseStyle =
+    'text-xs inline-flex items-center mx-1 gap-1.5 px-3 py-1 rounded-full text-sm border border-pwv-gray';
+  return {
+    container: baseStyle,
+    dot: `w-1.5 h-1.5 rounded-full ${dotColors[tag.toLowerCase()] || 'bg-pwv-soft-periwinkle'}`,
+  };
+};
+---
+
+<div class="flex flex-col gap-2 overflow-hidden py-1">
+  <a
+    href={url}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="flex min-w-0 items-center gap-3 font-serif font-medium hover:underline"
+  >
+    <UnpicImage
+      src={resolvePortfolioLogoSrc(`logos/small/${slug}.png`)}
+      alt={`${name} logo`}
+      width={32}
+      height={32}
+      class={`flex-shrink-0 p-0.5 border border-pwv-gray ${blackBackgroundSlugs.includes(slug) ? 'bg-black' : 'bg-surface'}`}
+    />
+    <span class="text-md flex-1 leading-snug break-words whitespace-normal">
+      {name}
+      {
+        formerly && (
+          <span class="ml-1 text-xs text-gray-500">(formerly {formerly})</span>
+        )
+      }
+      {
+        acquiredBy && (
+          <span class="ml-1 text-xs text-gray-500">(acquired by {acquiredBy})</span>
+        )
+      }
+    </span>
+  </a>
+  {
+    showTags && (
+      <div class="flex flex-wrap gap-1">
+        {tags.map((tag) => {
+          const styles = getTagStyle(tag);
+          return (
+            <a
+              href={`/portfolio/tags/${encodeURIComponent(tag.toLowerCase())}`}
+              class={styles.container}
+            >
+              <span class={styles.dot} />
+              {tag.toLowerCase()}
+            </a>
+          );
+        })}
+      </div>
+    )
+  }
+</div>

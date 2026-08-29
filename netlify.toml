@@ -1,6 +1,186 @@
+[build]
+  command = "pnpm run build"
+  publish = "dist"
+
+# pnpm 11 (package.json packageManager) requires Node.js >=22.13.
+# Netlify runs `pnpm install` before the build command, using Node's bundled Corepack.
+# That Corepack often lags npm registry key rotations ("Cannot find matching keyid").
+# COREPACK_INTEGRITY_KEYS=0 skips signature checks during that install step only.
+# packageManager includes a sha512 pin so Corepack uses the exact pnpm tarball.
+[build.environment]
+  NODE_VERSION = "22"
+  COREPACK_INTEGRITY_KEYS = "0"
+
+# Trailing slash handling - Netlify automatically adds trailing slashes
+# This matches Astro's trailingSlash: 'always' configuration
+[build.processing]
+  skip_processing = false
+[build.processing.html]
+  pretty_urls = true
+
+# Cache control headers for better performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Vary = "Accept-Encoding"
+
+# Cache static assets for 1 year
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept-Encoding"
+
+# Cache images for 1 month
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "*.jpeg"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# Cache CSS files with compression
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept-Encoding"
+
+# Cache JavaScript files with compression
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Vary = "Accept-Encoding"
+
+# Cache HTML pages for 1 hour (since content can change)
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, s-maxage=3600"
+
+# Cache static HTML pages for longer (static generation)
+[[headers]]
+  for = "/news*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, s-maxage=3600"
+
+# Set content-type for RSS feed
+[[headers]]
+  for = "/rss.xml"
+  [headers.values]
+    Content-Type = "application/rss+xml; charset=utf-8"
+    Cache-Control = "public, max-age=3600, s-maxage=3600"
+
+# Set content-type for sitemap
+[[headers]]
+  for = "/sitemap-*.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=3600, s-maxage=3600"
+
+# Redirect old /library/ URLs to new /news/ URLs
+[[redirects]]
+  from = "/library/*"
+  to = "/news/:splat"
+  status = 301
+  force = true
+
+# Redirect old portfolio query parameters to new routes
+[[redirects]]
+  from = "/portfolio"
+  to = "/portfolio/tags/:tag"
+  status = 301
+  query = {tags = ":tag"}
+  force = false
+
+# Redirect old Marly tag to Inference Capital
+[[redirects]]
+  from = "/portfolio/tags/marly"
+  to = "/portfolio/tags/inference-capital"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/"
+  to = "/"
+  status = 301
+  query = {ref = ":ref"}
+  force = false
+
 [[redirects]]
   from = "/fund-memo"
-  to = "https://pwv.notion.site/PWV-Fund-Memo-116b3e27e9b580cfb085e18e4281e407"
+  to = "https://fund.pwv.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/teaser-deck"
+  to = "https://pwv.docsend.com/v/mvzp8/pwv-teaser-deck"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/teaserdeck"
+  to = "https://pwv.docsend.com/v/mvzp8/pwv-teaser-deck"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/data-room"
+  to = "https://pwv.docsend.com/view/s/4iy3dfkzkgffqt4p"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/dataroom"
+  to = "https://pwv.docsend.com/view/s/4iy3dfkzkgffqt4p"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/rss"
+  to = "/rss.xml"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/zoo-spv"
+  to = "https://pwv.docsend.com/view/s/6ccvzkbdkexbu6kb"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/zoospv"
+  to = "https://pwv.docsend.com/view/s/6ccvzkbdkexbu6kb"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/agentcribs"
+  to = "https://agentcribs.pwv.com/"
   status = 301
   force = true
 

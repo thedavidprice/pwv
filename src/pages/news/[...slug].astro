@@ -1,0 +1,329 @@
+---
+import Heading1 from '../../components/Heading1.astro';
+import { render } from 'astro:content';
+import SmartImage from '../../components/SmartImage.astro';
+import Layout from '../../layouts/Layout.astro';
+import PlaceholderImage from '../../components/PlaceholderImage.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import PostNavigation from '../../components/PostNavigation.astro';
+import { marked } from 'marked';
+
+import {
+  getReadingTime,
+  getPostNavigation,
+  getAllPosts,
+  authorToSlug,
+  tagToSlug,
+} from '../../lib/news';
+import { KEYWORDS } from '../../consts';
+import {
+  generateArticleSchema,
+  generateBreadcrumbListSchema,
+} from '../../lib/schema';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allPosts = await getAllPosts();
+  return allPosts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+const { Content } = await render(post);
+const { nextPost, previousPost } = await getPostNavigation(post.id);
+
+// Generate meta data from post
+const title = post.data.title;
+const layoutTitle = 'News | ' + post.data.title + ' by ' + post.data.author;
+const description = post.data.description;
+const image = post.data.heroImage || '/og-image.png';
+const keywords = post.data.tags.join(', ') + ', ' + KEYWORDS;
+
+// Get base URL for schema generation
+export const isProduction = process.env.CONTEXT === 'production';
+export const isDeployPreview = process.env.CONTEXT === 'deploy-preview';
+const baseURL = isDeployPreview
+  ? process.env.DEPLOY_PRIME_URL || Astro.site
+  : Astro.site;
+const canonicalURL = new URL(`/news/${post.id}`, baseURL);
+
+// Get team member info if author matches a team member
+let authorInfo: any = null;
+if (post.data.author) {
+  const teamMembers = await getCollection('team' as any);
+  authorInfo = (teamMembers as any[]).find(
+    (member: any) => member.data.name === post.data.author
+  );
+}
+
+// Generate author schema data
+const authorSameAs: string[] = [];
+if (authorInfo) {
+  if (authorInfo.data.linkedin) {
+    authorSameAs.push(
+      `https://www.linkedin.com/in/${authorInfo.data.linkedin}`
+    );
+  }
+  if (authorInfo.data.twitter) {
+    authorSameAs.push(`https://x.com/${authorInfo.data.twitter}`);
+  }
+  if (authorInfo.data.github) {
+    authorSameAs.push(`https://github.com/${authorInfo.data.github}`);
+  }
+  if (authorInfo.data.bluesky) {
+    const blueskyUrl = authorInfo.data.bluesky.startsWith('http')
+      ? authorInfo.data.bluesky
+      : `https://bsky.app/profile/${authorInfo.data.bluesky}`;
+    authorSameAs.push(blueskyUrl);
+  }
+}
+
+// Generate Article schema
+let articleImage: string;
+const heroImage = post.data.heroImage;
+if (heroImage) {
+  if (typeof heroImage === 'string') {
+    const imgStr = heroImage as string;
+    articleImage = imgStr.startsWith('/')
+      ? new URL(imgStr, baseURL).toString()
+      : new URL('/og-image.png', baseURL).toString();
+  } else if (
+    typeof heroImage === 'object' &&
+    heroImage !== null &&
+    'src' in heroImage
+  ) {
+    const src = (heroImage as any).src;
+    articleImage =
+      typeof src === 'string'
+        ? new URL(src, baseURL).toString()
+        : new URL('/og-image.png', baseURL).toString();
+  } else {
+    articleImage = new URL('/og-image.png', baseURL).toString();
+  }
+} else {
+  articleImage = new URL('/og-image.png', baseURL).toString();
+}
+
+// Generate Organization @id for publisher linking
+const organizationId = new URL('#organization', baseURL || canonicalURL).toString();
+
+// Generate author data - use @id if team member, otherwise full schema
+const authorData = post.data.author
+  ? authorInfo
+    ? {
+        // Team member - use @id reference to link to their Person schema
+        id: new URL(`/team/${authorInfo.data.slug}#person`, baseURL || canonicalURL).toString(),
+      }
+    : {
+        // External author - use full schema
+        name: post.data.author,
+        url: new URL(
+          `/news/author/${authorToSlug(post.data.author)}`,
+          baseURL
+        ).toString(),
+        sameAs: authorSameAs.length > 0 ? authorSameAs : undefined,
+      }
+  : undefined;
+
+const articleSchema = generateArticleSchema({
+  headline: post.data.title,
+  description: post.data.description,
+  url: canonicalURL.toString(),
+  image: articleImage,
+  author: authorData,
+  publisher: {
+    // Use @id to link to Organization schema on homepage
+    id: organizationId,
+  },
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified:
+    post.data.updatedDate?.toISOString() || post.data.pubDate.toISOString(),
+  articleBody: post.body
+    ? (() => {
+        // Remove import statements first
+        let content = post.body.replace(
+          /^import\s+.*?from\s+['"].*?['"];?\s*$/gm,
+          ''
+        );
+        // Render markdown to HTML
+        const html = marked.parse(content.trim()) as string;
+        // Strip HTML tags and normalize whitespace
+        return html
+          .replace(/<[^>]*>/g, '') // Remove HTML tags
+          .replace(/\n+/g, ' ') // Replace newlines with spaces
+          .replace(/\s+/g, ' ') // Normalize whitespace
+          .trim()
+          .substring(0, 5000);
+      })()
+    : undefined,
+  articleSection: post.data.tags.length > 0 ? post.data.tags[0] : undefined,
+  keywords: post.data.tags.length > 0 ? post.data.tags.join(', ') : undefined,
+  type: post.data.url ? 'NewsArticle' : 'BlogPosting',
+});
+
+// Generate BreadcrumbList schema
+const breadcrumbItems = [
+  { name: 'Home', url: new URL('/', baseURL).toString() },
+  { name: 'News', url: new URL('/news', baseURL).toString() },
+  { name: post.data.title, url: canonicalURL.toString() },
+];
+const breadcrumbSchema = generateBreadcrumbListSchema({
+  items: breadcrumbItems,
+});
+---
+
+<Layout
+  title={layoutTitle}
+  description={description}
+  image={image}
+  keywords={keywords}
+  author={post.data.author}
+  pubDate={post.data.pubDate}
+  updatedDate={post.data.updatedDate}
+  tags={post.data.tags}
+  imageAlt={post.data.title}
+  locale="en_US"
+  enableUTMTracking={true}
+  contentType="post"
+  contentSlug={post.id}
+  redirectAfter={post.data.url ? 5 : undefined}
+  redirectUrl={post.data.url}
+  additionalSchemas={[{ schema: articleSchema }, { schema: breadcrumbSchema }]}
+>
+  <div class="prose prose-lg max-w-screen-xl">
+    <!-- Responsive layout: stacked on small, 50/50 side-by-side on medium+ -->
+    <div class="flex flex-col md:flex-row md:items-center md:gap-8 lg:gap-12">
+      <!-- Left column: title, description, author -->
+      <div class="md:w-1/2">
+        <Heading1>{title}</Heading1>
+
+        <p>
+          {post.data.description}
+        </p>
+        <p class="text-subtle text-sm">
+          Written by{' '}
+          {
+            post.data.author ? (
+              <a
+                href={`/news/author/${authorToSlug(post.data.author)}`}
+                class="text-pwv-black hover:text-pwv-green underline transition-colors"
+              >
+                {post.data.author}
+              </a>
+            ) : (
+              'Unknown'
+            )
+          }
+          {
+            (() => {
+              const readingTime = getReadingTime(post.body);
+              return readingTime > 0 ? ` • ${readingTime} min read` : '';
+            })()
+          }
+        </p>
+      </div>
+
+      <!-- Right column: image -->
+      <div class="md:w-1/2">
+        {
+          post.data.heroImage ? (
+            <div class="">
+              <SmartImage
+                src={post.data.heroImage}
+                alt={post.data.title}
+                size="hero"
+                rounded={true}
+                shadow={true}
+                class="h-auto w-full object-contain"
+                loading="eager"
+              />
+            </div>
+          ) : (
+            <PlaceholderImage
+              alt={`Hero image for ${post.data.title}`}
+              class="mb-8 h-64 w-full rounded-lg"
+            />
+          )
+        }
+      </div>
+    </div>
+    <!-- External link for posts with URL -->
+    {
+      post.data.url && (
+        <div class="border-default bg-surface-muted mt-8 rounded-lg border p-6">
+          <p class="text-muted mb-3 text-sm">
+            This is an external article from our community.
+          </p>
+          <a
+            href={post.data.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-primary fg-on-primary hover:bg-primary-hover inline-flex items-center gap-2 rounded-lg px-4 py-2 font-medium transition-colors duration-200"
+          >
+            Read full article on{' '}
+            {new URL(post.data.url).hostname.replace('www.', '')}
+            <svg
+              class="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+              />
+            </svg>
+          </a>
+        </div>
+      )
+    }
+    <div class="mt-8 flex items-center justify-between">
+      <div class="flex flex-wrap gap-2">
+        {
+          post.data.tags.map((tag) => (
+            <a
+              href={`/news/tags/${tagToSlug(tag)}`}
+              class="border-default text-pwv-black border-pwv-green hover:bg-pwv-light-green rounded-lg border p-2 font-mono text-sm transition-colors"
+            >
+              {tag}
+            </a>
+          ))
+        }
+      </div>
+      <p class="ml-auto text-sm whitespace-nowrap">
+        🗓️ <FormattedDate date={post.data.pubDate} />
+        {
+          post.data.updatedDate &&
+            post.data.updatedDate.getTime() !== post.data.pubDate.getTime() && (
+              <>
+                {' • '}
+                <span class="text-subtle">
+                  Updated <FormattedDate date={post.data.updatedDate} />
+                </span>
+              </>
+            )
+        }
+      </p>
+    </div>
+    <hr />
+    <section class="max-w-screen-lg">
+      <Content />
+    </section>
+
+    <!-- Post Navigation -->
+    <PostNavigation
+      currentPost={post}
+      nextPost={nextPost}
+      previousPost={previousPost}
+    />
+  </div>
+</Layout>
